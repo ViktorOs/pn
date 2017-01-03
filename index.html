@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="pokemonApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content='true' name='HandheldFriendly'/>
+    <meta content='width' name='MobileOptimized'/>
+    <meta content='yes' name='apple-mobile-web-app-capable'/>
+    <title>PokemoNotify</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body ng-controller="pokemonController">
+    <div class="user-location">
+        <h2>Browser coordinates</h2>
+        autolatitude - {{coords.lat}} <br />
+        autolongitude - {{coords.lng}}
+    </div>
+    <div>
+        <h2>User coordinates</h2>
+        <form ng-submit="setUserCoords()">
+            <div>
+                <label>Latitude</label>
+                <input type="text" ng-model="userLat"/>
+            </div>
+            <div>
+                <label>Longitude</label>
+                <input type="text" ng-model="userLng"/>
+            </div>
+            <button type="submit">New Coordinates</button>
+        </form>
+        <button type="button" ng-click="getFromLocalStorage()">Saved Coordinates</button>
+    </div>
+
+    <div ng-repeat="pokemonItem in pokemonNames" style="height:48px; line-height:48px;">
+        {{pokemonItem.name}} -
+        <img style="vertical-align: top;" ng-src="{{pokemonItem.img}}" width="48" height="48">
+        - {{pokemonItem.distance * 1000 | number:1}} m.
+    </div>
+
+
+    <script src="app/pokemon.js"></script>
+</body>
+</html>
